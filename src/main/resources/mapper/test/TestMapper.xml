@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test">
+
+    <select id="testBoardList" resultType="com.example.demo.PangDto">
+
+    select * from TestBoard order by boardNum desc
+
+    </select>
+
+    <select id="detail" resultType="com.example.demo.PangDto">
+
+        select * from TestBoard where boardNum=#{boardNum}
+
+    </select>
+
+    <delete id="delete">
+
+        delete from TestBoard where boardNum=#{boardNum}
+
+    </delete>
+
+    <insert id="write">
+
+     insert into TestBoard values(Test_SEQ.nextval,#{writer},#{title},#{content},sysdate)
+
+    </insert>
+    
+    <update id="hit">
+
+        update TestBoard set hit = hit+1 where boardNum=#{boardNum}
+
+    </update>
+
+</mapper>
