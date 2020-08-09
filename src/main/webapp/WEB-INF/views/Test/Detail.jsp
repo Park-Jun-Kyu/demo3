@@ -18,7 +18,7 @@
         #box2{width : 350px; height: 50px; border: 1px solid black;
             display:table-cell; vertical-align: middle;}
         #box3{width : 500px; height: 400px; border: 1px solid black;
-            vertical-align: middle;
+            vertical-align: middle;}
         #box4{width : 500px; height: 50px; border: 5px solid black;}
 
     </style>

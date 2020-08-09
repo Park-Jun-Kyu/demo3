@@ -93,6 +93,31 @@
             text-align : left;
         }
 
+        a:link { color: red; text-decoration: none;}
+
+        table.type11 {
+            border-collapse: separate;
+            border-spacing: 1px;
+            text-align: center;
+            line-height: 1.5;
+            margin: 20px 10px;
+        }
+        table.type11 th {
+            width: 155px;
+            padding: 10px;
+            font-weight: bold;
+            vertical-align: top;
+            color: #fff;
+            background: #ce4869 ;
+        }
+        table.type11 td {
+            width: 155px;
+            padding: 10px;
+            vertical-align: top;
+            border-bottom: 1px solid #ccc;
+            background: #eee;
+        }
+
 
     </style>
 
@@ -108,51 +133,78 @@
 
         <jsp:useBean id="now" class="java.util.Date"/>
 
-        <li>
-            Table
-            <ul id ="ulTable">
-                <li>
-                    <ul>
-                        <li>No</li>
-                        <li>제목</li>
-                        <li>작성일</li>
-                        <li>작성자</li>
-                        <li>조회수</li>
-                    </ul>
-                </li>
-                <!-- 게시물이 출력될 영역 -->
-                <c:forEach var="list" items="${list}">
-                    <fmt:formatDate value="${list.writeDate}" pattern="yyyy/MM/dd" var="writeDate"/>
-                <li>
-                    <ul>
-                        <li>${list.boardNum}</li>
-                        <li class="left">${list.title}</li>
-                        <li><fmt:formatDate value="${list.writeDate}" pattern="yyyy/MM/dd"/> </li>
-                        <li>${list.writer}</li>
-                        <li>${list.hit}</li>
-                    </ul>
-                </li>
-                </c:forEach>
-            </ul>
-        </li>
+
+        <table class="type11">
+            <thead>
+
+
+            <tr>
+                <th scope="cols">No</th>
+                <th scope="cols">제목</th>
+                <th scope="cols">작성일</th>
+                <th scope="cols">작성자</th>
+                <th scope="cols">조회수</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="list" items="${list}">
+                <fmt:formatDate value="${list.writeDate}" pattern="yyyy/MM/dd" var="writeDate"/>
+            <tr>
+                <td>${list.boardNum}</td>
+                <td><a href="detail?boardNum=${list.boardNum}">${list.title}</a></td>
+                <td><fmt:formatDate value="${list.writeDate}" pattern="yyyy/MM/dd"/></td>
+                <td>${list.writer}</td>
+                <td>${list.hit}</td>
+            </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+
+
+
+
+        <a href="writeView"> <input type='button' value='글쓰기'/></a>
 
         <!-- 게시판 페이징 영역 -->
         <li>
-            <div id="divPaging">
-                <div>◀</div>
-                <div><b>1</b></div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>▶</div>
-            </div>
+
+
+    <div class="allPageMoving1">
+        <c:if test="${pDto.listCnt ne 0}">
+        <a href="list?curPage=1&search=${sv.search}&boardNum=${sv.boardNum}" class="n">◀</a>
+        <c:if test="${pDto.prev_page}">
+
+            <a href="list?curPage=${pDto.start_page-1}&search=${sv.search}&boardNum=${sv.boardNum}">이전</a>
+        </c:if>
+
+        <c:forEach begin="${pDto.start_page}" end="${pDto.end_page}" step="1" var="index">
+            <c:if test="${pDto.curPage eq index}">
+                <a  href="list?curPage=${index}&search=${sv.search}&boardNum=${sv.boardNum}">${index}</a>
+            </c:if>
+            <c:if test="${pDto.curPage ne index}">
+                <a href="list?curPage=${index}&search=${sv.search}&boardNum=${sv.boardNum}">${index}</a>
+
+
+            </c:if>
+        </c:forEach>
+
+        <c:if test="${pDto.next_page}">
+            <a href="list?curPage=${pDto.end_page+1}&search=${sv.search}&boardNum=${sv.boardNum}" class="next">다음</a>
+        </c:if>
+
+
+        <a href="list?curPage=${pDto.page_cnt}&search=${sv.search}&boardNum=${sv.boardNum}" class="n">▶</a>
+
+        </c:if>
+    </div>
+
+            <!-- //페이징이동1 -->
         </li>
 
         <!-- 검색 폼 영역 -->
         <li id='liSearchOption'>
             <div>
-                <select id='selSearchOption' >
+                <select id='search' >
                     <option value='A'>제목+내용</option>
                     <option value='T'>제목</option>
                     <option value='C'>내용</option>

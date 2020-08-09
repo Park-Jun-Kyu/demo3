@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 public class TestControlelr {
 
@@ -14,8 +16,13 @@ public class TestControlelr {
 
 
     @RequestMapping("list")
-    public String List(Model model ){
-         model.addAttribute("list", testService.list());
+    public String List(Model model,SearchValue sv){
+        PageNationDto pDto = testService.boardPageNation(sv);
+        List<PangDto>list = testService.list(sv);
+
+        model.addAttribute("list",list);
+        model.addAttribute("pDto",pDto);
+        model.addAttribute("sv",sv);
 
         return "Test/List";
     }

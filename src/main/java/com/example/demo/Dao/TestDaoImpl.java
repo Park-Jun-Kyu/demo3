@@ -1,7 +1,9 @@
 package com.example.demo.Dao;
 
 
+import com.example.demo.PageNationDto;
 import com.example.demo.PangDto;
+import com.example.demo.SearchValue;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,8 +17,9 @@ public class TestDaoImpl implements TestDao {
     SqlSession sqlSession;
 
     @Override
-    public List<PangDto> list() {
-        return sqlSession.selectList("test.testBoardList");
+    public List<PangDto> list(SearchValue sv) {
+        return sqlSession.selectList("test.testBoardList",sv);
+
     }
 
     @Override
@@ -40,5 +43,10 @@ public class TestDaoImpl implements TestDao {
     public void hit(PangDto pangDto) {
 
         sqlSession.update("test.hit",pangDto);
+    }
+
+    @Override
+    public PageNationDto boardPageNation(SearchValue sv) {
+        return sqlSession.selectOne("test.testBoardPageNation",sv);
     }
 }

@@ -1,12 +1,14 @@
 package com.example.demo.service;
 
+import com.example.demo.PageNationDto;
 import com.example.demo.PangDto;
+import com.example.demo.SearchValue;
 
 import java.util.List;
 
 public interface TestService {
 
-    public List<PangDto> list();
+    public List<PangDto> list(SearchValue sv);
 
     public PangDto detail(int boardNum);
 
@@ -15,5 +17,7 @@ public interface TestService {
     public void write(PangDto pangDto);
 
     public void hit(PangDto pangDto);
+
+    public PageNationDto boardPageNation(SearchValue sv);
 
 }

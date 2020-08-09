@@ -5,11 +5,23 @@
 
 <mapper namespace="test">
 
-    <select id="testBoardList" resultType="com.example.demo.PangDto">
+    <select id="testBoardPageNation" resultType="com.example.demo.PageNationDto">
 
-    select * from TestBoard order by boardNum desc
+    select count(*) listCnt from TestBoard
 
     </select>
+
+    <select id="testBoardList" resultType="com.example.demo.PangDto">
+
+   select * from(select row_number() over(order by boardNum desc)as rnum,boardNum,writer,title,content,writeDate,hit
+    from
+    TestBoard order by boardNum desc)
+    where rnum between(#{curPage})*2+1 and ((#{curPage}-1)*2+1)+2+1
+
+
+    </select>
+
+
 
     <select id="detail" resultType="com.example.demo.PangDto">
 
@@ -25,7 +37,7 @@
 
     <insert id="write">
 
-     insert into TestBoard values(Test_SEQ.nextval,#{writer},#{title},#{content},sysdate)
+     insert into TestBoard values(Test_SEQ.nextval,#{writer},#{title},#{content},sysdate,0)
 
     </insert>
     
