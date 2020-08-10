@@ -20,4 +20,6 @@ public interface TestDao {
     public void hit(PangDto pangDto);
 
     public PageNationDto boardPageNation(SearchValue sv);
+
+    public void modify(PangDto pangDto);
 }

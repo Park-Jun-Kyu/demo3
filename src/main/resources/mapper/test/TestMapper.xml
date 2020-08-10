@@ -16,7 +16,7 @@
    select * from(select row_number() over(order by boardNum desc)as rnum,boardNum,writer,title,content,writeDate,hit
     from
     TestBoard order by boardNum desc)
-    where rnum between(#{curPage})*2+1 and ((#{curPage}-1)*2+1)+2+1
+    where rnum between(#{curPage}-1)*5+1 and ((#{curPage}-1)*5+1)+5-1
 
 
     </select>
@@ -44,6 +44,13 @@
     <update id="hit">
 
         update TestBoard set hit = hit+1 where boardNum=#{boardNum}
+
+    </update>
+
+    <update id="modify">
+
+        update TESTBOARD set WRITER = #{writer},TITLE = #{title} , CONTENT = #{content}
+        where BOARDNUM=#{boardNum}
 
     </update>
 

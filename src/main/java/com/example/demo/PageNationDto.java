@@ -2,7 +2,7 @@ package com.example.demo;
 
 public class PageNationDto {
 
-    private int page_size = 2; // 한 페이지에 담을 게시글 수
+    private int page_size = 5; // 한 페이지에 담을 게시글 수
     private int range_size = 5;// 한 블럭 에 담을 페이지 수
     private int curPage; // 현재 페이지 위치
     private int cur_range; // 현재 블럭 위치
@@ -80,10 +80,10 @@ public class PageNationDto {
 
     // 게시판 페이지 갯수
     public void setPage_cnt(int listCnt) {
-        if (listCnt % 2 == 0) {
-            this.page_cnt = listCnt / 2;
+        if (listCnt % 5 == 0) {
+            this.page_cnt = listCnt / 5;
         } else {
-            this.page_cnt = listCnt / 2 + 1;
+            this.page_cnt = listCnt / 5 + 1;
         }
     }
 

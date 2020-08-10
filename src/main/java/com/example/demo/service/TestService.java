@@ -20,4 +20,6 @@ public interface TestService {
 
     public PageNationDto boardPageNation(SearchValue sv);
 
+    public void modify(PangDto pangDto);
+
 }

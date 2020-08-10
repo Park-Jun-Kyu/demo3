@@ -57,5 +57,24 @@ public class TestControlelr {
         return "redirect:/list";
     }
 
+    @RequestMapping("modifyView")
+    public String modifyView(Model model,PangDto pangDto){
+
+        model.addAttribute("detail",testService.detail(pangDto.boardNum));
+
+        return "Test/modify";
+    }
+
+    @RequestMapping("modify")
+    public String modify(Model model,PangDto pangDto){
+
+        testService.modify(pangDto);
+
+        return "redirect:/detail?boardNum=" + pangDto.boardNum;
+    }
+
+
+
+
 
 }

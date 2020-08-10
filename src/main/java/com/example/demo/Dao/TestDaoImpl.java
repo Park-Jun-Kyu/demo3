@@ -49,4 +49,10 @@ public class TestDaoImpl implements TestDao {
     public PageNationDto boardPageNation(SearchValue sv) {
         return sqlSession.selectOne("test.testBoardPageNation",sv);
     }
+
+    @Override
+    public void modify(PangDto pangDto) {
+
+        sqlSession.update("test.modify",pangDto);
+    }
 }

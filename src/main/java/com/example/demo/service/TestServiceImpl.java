@@ -60,5 +60,11 @@ public class TestServiceImpl implements TestService {
         return pDto;
     }
 
+    @Override
+    public void modify(PangDto pangDto) {
+
+        testDao.modify(pangDto);
+    }
+
 
 }

@@ -27,21 +27,21 @@
 </head>
 <body>
 
-<form action="" name="" method="post">
+<form action="modify" name="modifyForm" method="post">
 
 
-<jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${detail.writeDate}" pattern="yyyy/MM/dd" var="writeDate" />
-<div class="BigBox">
-    <div id="box1">글쓴이:${detail.writer}</div>
-    <div id="box2">글제목:${detail.title}</div>
-    <div id="box4">작성일:<fmt:formatDate value="${detail.writeDate}"/></div>
-    <div id="box3">${detail.content}</div>
-
-</div>
-    <a href="modifyView?boardNum=${detail.boardNum}">수정</a>
-<a href="delete?boardNum=${detail.boardNum}" >삭제</a>
-<a href="list">목록</a>
+    <jsp:useBean id="now" class="java.util.Date" />
+    <fmt:formatDate value="${detail.writeDate}" pattern="yyyy/MM/dd" var="writeDate" />
+    <div class="BigBox">
+        <div id="box1">글쓴이:<input type="text" name="writer" value="${detail.writer}"></div>
+        <div id="box2">글제목:<input type="text" name="title" value="${detail.title}"></div>
+        <div id="box4">작성일:<fmt:formatDate value="${detail.writeDate}"/></div>
+        <div id="box3"><textarea name="content" cols="70" rows="25">${detail.content}</textarea></div>
+        <input type="hidden" name="boardNum" value="${detail.boardNum}">
+    </div>
+    <input type="submit" value="수정">
+    <a href="delete?boardNum=${detail.boardNum}" >삭제</a>
+    <a href="#" onclick="history.back(); return false;">목록</a>
 
 </form>
 
