@@ -17,8 +17,10 @@ public class TestControlelr {
 
     @RequestMapping("list")
     public String List(Model model,SearchValue sv){
-        PageNationDto pDto = testService.boardPageNation(sv);
-        List<PangDto>list = testService.list(sv);
+//        PageNationDto pDto = testService.boardPageNation(sv);
+//        List<PangDto>list = testService.list(sv);
+        List<PangDto>list = testService.searchList(sv);
+        PageNationDto pDto =  testService.searchListPageNation(sv);
 
         model.addAttribute("list",list);
         model.addAttribute("pDto",pDto);
@@ -73,6 +75,17 @@ public class TestControlelr {
         return "redirect:/detail?boardNum=" + pangDto.boardNum;
     }
 
+    @RequestMapping("search")
+    public String search(SearchValue sv,Model model){
+
+
+
+//        model.addAttribute("list",list);
+//        model.addAttribute("pDto",pDto);
+//        model.addAttribute("sv",sv);
+
+        return "Test/List";
+    }
 
 
 

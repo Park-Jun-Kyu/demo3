@@ -54,4 +54,63 @@
 
     </update>
 
+
+
+    <select id="searchPageNationAll" resultType="com.example.demo.PageNationDto">
+
+    select count(*) listCnt from TESTBOARD where title like '%'||#{search}||'%' or content like '%'||#{search}||'%'
+
+    </select>
+
+    <select id="searchPageNationTitle" resultType="com.example.demo.PageNationDto">
+
+    select count(*) listCnt from TESTBOARD where title like '%'||#{search}||'%'
+
+    </select>
+
+    <select id="searchPageNationContent" resultType="com.example.demo.PageNationDto">
+
+    select count(*) listCnt from TESTBOARD where CONTENT like '%'||#{search}||'%'
+
+    </select>
+
+
+
+
+
+    <select id="searchAll" resultType="com.example.demo.PangDto">
+
+    select * from(select row_number() over(order by boardNum desc)
+    as rnum,boardNum,writer,title,content,writeDate,hit
+    from TestBoard where title like '%'||#{search}||'%' or CONTENT like '%'||#{search}||'%'
+    order by boardNum desc)
+    where rnum between(#{curPage}-1)*5+1 and ((#{curPage}-1)*5+1)+5-1
+
+    </select>
+
+
+    <select id="searchTitle" resultType="com.example.demo.PangDto">
+
+    select * from(select row_number() over(order by boardNum desc)
+    as rnum,boardNum,writer,title,content,writeDate,hit
+    from TestBoard where title like '%'||#{search}||'%'
+    order by boardNum desc)
+    where rnum between(#{curPage}-1)*5+1 and ((#{curPage}-1)*5+1)+5-1
+
+    </select>
+
+
+    <select id="searchContent" resultType="com.example.demo.PangDto">
+
+    select * from(select row_number() over(order by boardNum desc)
+    as rnum,boardNum,writer,title,content,writeDate,hit
+    from TestBoard where Content like '%'||#{search}||'%'
+    order by boardNum desc)
+    where rnum between(#{curPage}-1)*5+1 and ((#{curPage}-1)*5+1)+5-1
+
+    </select>
+
+
+
+
 </mapper>

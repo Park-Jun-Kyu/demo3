@@ -22,4 +22,8 @@ public interface TestDao {
     public PageNationDto boardPageNation(SearchValue sv);
 
     public void modify(PangDto pangDto);
+
+    public List<PangDto> searchList(SearchValue sv);
+
+    public PageNationDto searchListPageNation(SearchValue sv);
 }

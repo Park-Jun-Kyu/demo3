@@ -66,5 +66,28 @@ public class TestServiceImpl implements TestService {
         testDao.modify(pangDto);
     }
 
+    @Override
+    public List<PangDto> searchList(SearchValue sv) {
+        return testDao.searchList(sv);
+    }
+
+    @Override
+    public PageNationDto searchListPageNation(SearchValue sv) {
+        PageNationDto pDto = testDao.searchListPageNation(sv);
+        pDto.setPage_cnt(pDto.getListCnt()); // 페이지 수 저장
+        pDto.setRange_cnt(pDto.getPage_cnt()); // 블럭 수 저장
+        pDto.setCurPage(sv.getCurPage()); // 현재 페이지 위치
+        pDto.setCur_range(sv.getCurPage()); // 현재 블럭 위치
+        pDto.prevnext(sv.getCurPage()); // 이전 블럭, 다음 블럭 설정
+        System.out.println("게시글 갯수 : " + pDto.getListCnt());
+        System.out.println("페이지 갯수 : " + pDto.getPage_cnt());
+        System.out.println("블록 갯수 :  " + pDto.getCur_range());
+        System.out.println("현재 블록 끝 페이지 : " + pDto.getEnd_page());
+        System.out.println("게시글에 담을 갯수 :"+pDto.getPage_size());
+        pDto.setStart_page(pDto.getCur_range(), pDto.getRange_size()); // 현재 블럭 시작 페이지
+        pDto.setEnd_page(pDto.getCur_range(), pDto.getRange_cnt()); // 현재 블럭 끝
+        return pDto;
+    }
+
 
 }

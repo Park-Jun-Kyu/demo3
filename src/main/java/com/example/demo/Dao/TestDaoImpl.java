@@ -55,4 +55,36 @@ public class TestDaoImpl implements TestDao {
 
         sqlSession.update("test.modify",pangDto);
     }
+
+    @Override
+    public List<PangDto> searchList(SearchValue sv) {
+        List<PangDto> pDto = null;
+        if(sv.getOption().equals("")){
+            pDto = sqlSession.selectList("test.testBoardList",sv);
+        }else if(sv.getOption().equals("TITLE")){
+            pDto = sqlSession.selectList("test.searchTitle",sv);
+        }else if(sv.getOption().equals("CONTENT")){
+            pDto = sqlSession.selectList("test.searchContent",sv);
+        }else if(sv.getOption().equals("ALL")){
+            pDto = sqlSession.selectList("test.searchAll",sv);
+        }
+        return pDto;
+    }
+
+    @Override
+    public PageNationDto searchListPageNation(SearchValue sv) {
+        PageNationDto pDto = null;
+        if(sv.getOption().equals("")){
+            pDto = sqlSession.selectOne("test.testBoardPageNation",sv);
+        }else if(sv.getOption().equals("TITLE")){
+            pDto = sqlSession.selectOne("test.searchPageNationTitle",sv);
+        }else if(sv.getOption().equals("CONTENT")){
+            pDto = sqlSession.selectOne("test.searchPageNationContent",sv);
+        }else if(sv.getOption().equals("ALL")){
+            pDto = sqlSession.selectOne("searchPageNationAll",sv);
+        }
+
+        return pDto;
+
+    }
 }

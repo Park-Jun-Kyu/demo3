@@ -171,47 +171,48 @@
 
     <div class="allPageMoving1">
         <c:if test="${pDto.listCnt ne 0}">
-        <a href="list?curPage=1&search=${sv.search}&boardNum=${sv.boardNum}" class="n">◀</a>
+        <a href="list?curPage=1&search=${sv.search}&option=${sv.option}&boardNum=${sv.boardNum}" class="n">◀</a>
         <c:if test="${pDto.prev_page}">
 
-            <a href="list?curPage=${pDto.start_page-1}&search=${sv.search}&boardNum=${sv.boardNum}">이전</a>
+            <a href="list?curPage=${pDto.start_page-1}&search=${sv.search}&option=${sv.option}&boardNum=${sv.boardNum}">이전</a>
         </c:if>
 
         <c:forEach begin="${pDto.start_page}" end="${pDto.end_page}" step="1" var="index">
             <c:if test="${pDto.curPage eq index}">
-                <a  href="list?curPage=${index}&search=${sv.search}&boardNum=${sv.boardNum}">${index}</a>
+                <a  href="list?curPage=${index}&search=${sv.search}&option=${sv.option}&boardNum=${sv.boardNum}">${index}</a>
             </c:if>
             <c:if test="${pDto.curPage ne index}">
-                <a href="list?curPage=${index}&search=${sv.search}&boardNum=${sv.boardNum}">${index}</a>
+                <a href="list?curPage=${index}&search=${sv.search}&option=${sv.option}&boardNum=${sv.boardNum}">${index}</a>
 
 
             </c:if>
         </c:forEach>
 
         <c:if test="${pDto.next_page}">
-            <a href="list?curPage=${pDto.end_page+1}&search=${sv.search}&boardNum=${sv.boardNum}" class="next">다음</a>
+            <a href="list?curPage=${pDto.end_page+1}&search=${sv.search}&option=${sv.option}&boardNum=${sv.boardNum}" class="next">다음</a>
         </c:if>
 
 
-        <a href="list?curPage=${pDto.page_cnt}&search=${sv.search}&boardNum=${sv.boardNum}" class="n">▶</a>
+        <a href="list?curPage=${pDto.page_cnt}&search=${sv.search}&option=${sv.option}&boardNum=${sv.boardNum}" class="n">▶</a>
 
         </c:if>
     </div>
 
             <!-- //페이징이동1 -->
         </li>
-
+        <form action="list" name="searchForm" method="post">
         <!-- 검색 폼 영역 -->
         <li id='liSearchOption'>
             <div>
-                <select id='search' >
-                    <option value='A'>제목+내용</option>
-                    <option value='T'>제목</option>
-                    <option value='C'>내용</option>
+                <select id='option' name="option">
+                    <option value='ALL'>제목+내용</option>
+                    <option value='TITLE'>제목</option>
+                    <option value='CONTENT'>내용</option>
                 </select>
-                <input id='txtKeyWord' />
-                <input type='button' value='검색'/>
+                <input type="text" id='search' name="search" />
+                <input type="submit" value="검색">
             </div>
+        </form>
         </li>
 
     </ul>
