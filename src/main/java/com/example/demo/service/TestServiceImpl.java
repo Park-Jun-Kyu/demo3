@@ -6,7 +6,10 @@ import com.example.demo.PangDto;
 import com.example.demo.SearchValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -31,7 +34,25 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public void write(PangDto pangDto) {
+    public void write(PangDto pangDto,List<MultipartFile> multi) throws Exception {
+        MultipartFile file = multi.get(0);
+        MultipartFile file2 = multi.get(1);
+
+        String path = "C:/Users/user/git/demo3/src/main/resources/static/images/upload/";
+
+
+        String originName1 = file.getOriginalFilename();
+        String originName2 = file2.getOriginalFilename();
+
+        String file11 = System.currentTimeMillis() + originName1;
+        String file22 = System.currentTimeMillis() + originName2;
+
+        file.transferTo(new File(path + file11));
+        file2.transferTo(new File(path + file22));
+
+        pangDto.setFile(file11);
+        pangDto.setFile2(file22);
+
 
         testDao.write(pangDto);
     }

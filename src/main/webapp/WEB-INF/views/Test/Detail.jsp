@@ -36,7 +36,9 @@
     <div id="box1">글쓴이:${detail.writer}</div>
     <div id="box2">글제목:${detail.title}</div>
     <div id="box4">작성일:<fmt:formatDate value="${detail.writeDate}"/></div>
-    <div id="box3">${detail.content}</div>
+    <div id="box3">${detail.content}<br>
+        <img src="images/upload/${detail.file}" alt="안뜸"><br>
+        <img src="images/upload/${detail.file2}" alt="안뜸"></div>
 
 </div>
     <a href="modifyView?boardNum=${detail.boardNum}">수정</a>

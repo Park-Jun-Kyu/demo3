@@ -9,8 +9,26 @@ public class PangDto {
     String writer;
     String title;
     String content;
-    Date writeDate;;
+    Date writeDate;
     int hit;
+    String file;
+    String file2;
+
+    public String getFile2() {
+        return file2;
+    }
+
+    public void setFile2(String file2) {
+        this.file2 = file2;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
 
     public int getHit() {
         return hit;

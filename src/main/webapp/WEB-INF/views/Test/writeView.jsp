@@ -87,7 +87,7 @@
 
         <h2>board Form</h2>
 
-        <form name="write" id="form" role="form" method="post" action="write">
+        <form name="write" id="form" role="form" method="post" action="write" enctype="multipart/form-data">
 
             <div class="mb-3">
 
@@ -103,7 +103,7 @@
 
                 <label for="reg_id">작성자</label>
 
-                <input type="text" class="form-control" name="writer" id="reg_id" placeholder="이름을 입력해 주세요">
+                <input type="text"  class="form-control" name="writer" id="reg_id" placeholder="이름을 입력해 주세요">
 
             </div>
 
@@ -114,6 +114,15 @@
                 <label for="content">내용</label>
 
                 <textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력해 주세요" ></textarea>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label for="content">파일첨부</label>
+
+                 <input type="file" class="form-control" name="multi">
+                <input type="file" class="form-control" name="multi">
 
             </div>
 

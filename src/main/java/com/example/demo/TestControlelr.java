@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -52,9 +54,9 @@ public class TestControlelr {
     }
 
     @RequestMapping("write")
-    public String write(Model model, PangDto pangDto){
+    public String write(Model model, PangDto pangDto,List<MultipartFile> multi) throws Exception {
         model.addAttribute("boardNum", pangDto.getBoardNum());
-        testService.write(pangDto);
+        testService.write(pangDto,multi);
 
         return "redirect:/list";
     }
@@ -75,17 +77,6 @@ public class TestControlelr {
         return "redirect:/detail?boardNum=" + pangDto.boardNum;
     }
 
-    @RequestMapping("search")
-    public String search(SearchValue sv,Model model){
-
-
-
-//        model.addAttribute("list",list);
-//        model.addAttribute("pDto",pDto);
-//        model.addAttribute("sv",sv);
-
-        return "Test/List";
-    }
 
 
 

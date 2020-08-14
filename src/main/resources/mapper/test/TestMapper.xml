@@ -37,7 +37,7 @@
 
     <insert id="write">
 
-     insert into TestBoard values(Test_SEQ.nextval,#{writer},#{title},#{content},sysdate,0)
+     insert into TestBoard values(Test_SEQ.nextval,#{writer},#{title},#{content},sysdate,0,#{file},#{file2})
 
     </insert>
     
@@ -49,7 +49,7 @@
 
     <update id="modify">
 
-        update TESTBOARD set WRITER = #{writer},TITLE = #{title} , CONTENT = #{content}
+        update TESTBOARD set WRITER = #{writer},TITLE = #{title} , CONTENT = #{content} ,#{file},#{file2}
         where BOARDNUM=#{boardNum}
 
     </update>
