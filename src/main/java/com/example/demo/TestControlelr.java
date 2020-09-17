@@ -77,7 +77,11 @@ public class TestControlelr {
         return "redirect:/detail?boardNum=" + pangDto.boardNum;
     }
 
+    @RequestMapping("windowopen")
+    public String windowopen(){
 
+        return "Test/windowopen";
+    }
 
 
 

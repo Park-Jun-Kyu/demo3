@@ -164,6 +164,8 @@
 
 
         <a href="writeView"> <input type='button' value='글쓰기'/></a>
+        <a href="#" onclick="window.open('windowopen','PopupWin','width=300, height=300, menubar=no, status=no, toolbar=no');">window팝업1</a>
+
 
         <!-- 게시판 페이징 영역 -->
         <li>
